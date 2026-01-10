@@ -35,10 +35,10 @@ export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
   return (
     <div className="relative w-full" ref={dropdownRef}>
       {/* Botão principal */}
-      <div
+      <div  
         onClick={() => setIsOpen(!isOpen)}
         className="
-          w-full p-3 bg-gray-900 text-white rounded-md border border-gray-700
+          w-full p-3 bg-white text-black dark:bg-gray-900 dark:text-white rounded-md border border-gray-700
           flex justify-between items-center cursor-pointer
           hover:bg-gray-800 transition-colors capitalize
         "
@@ -49,13 +49,13 @@ export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
 
       {/* Dropdown */}
       {isOpen && (
-        <ul className="absolute z-10 max-h-64 overflow-auto mt-auto w-full box-border bg-gray-900 border border-gray-700 rounded-md shadow-lg">
+        <ul className="absolute z-10 max-h-64 overflow-auto mt-auto w-full box-border bg-gray-600 dark:bg-gray-900 border border-gray-400  dark:border-gray-700 rounded-md shadow-lg">
           {pokemons.map((p, index) => (
             <li
               key={index + 1}
               onClick={() => handleSelect(p, index + 1)}
               className="
-                px-3 py-2 hover:bg-gray-800 text-white cursor-pointer
+                px-3 py-2 hover:bg-gray-800 text-black dark:text-white cursor-pointer
                 transition-colors capitalize bg-[#ededed] dark:bg-[#0a0a0a]
               "
             >

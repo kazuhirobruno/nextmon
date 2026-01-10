@@ -12,9 +12,24 @@ export interface Pokemon {
         front_default: string
       }
     }
-  }
+  },
+  types: [
+    {
+      type: {
+        name: string 
+      }
+    }
+  ],
+  abilities: [
+   Ability
+  ]
 }
 
-// export interface Version {
-
-// }
+export interface Ability {
+  is_hidden: boolean,
+  ability: {
+    name: string,
+    url: string,
+  }
+}
+  

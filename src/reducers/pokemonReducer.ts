@@ -1,16 +1,18 @@
+import { Pokemon } from "../types/pokemon";
+
 export interface PokemonState {
   version: string | null      // versão escolhida da API
-  selectedPokemonId: number | null
+  selectedPokemon: Pokemon | null
 }
 
 export type PokemonAction =
   | { type: 'SET_VERSION'; payload: string }
-  | { type: 'SELECT_POKEMON'; payload: number }
+  | { type: 'SELECT_POKEMON'; payload: Pokemon }
   | { type: 'CLEAR_SELECTION' }
 
 export const initialState: PokemonState = {
   version: null,
-  selectedPokemonId: null,
+  selectedPokemon: null,
 }
 
 export function pokemonReducer(
@@ -22,10 +24,10 @@ export function pokemonReducer(
       return { ...state, version: action.payload }
 
     case 'SELECT_POKEMON':
-      return { ...state, selectedPokemonId: action.payload }
+      return { ...state, selectedPokemon: action.payload }
 
     case 'CLEAR_SELECTION':
-      return { ...state, selectedPokemonId: null }
+      return { ...state, selectedPokemon: null }
 
     default:
       return state
