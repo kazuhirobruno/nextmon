@@ -1,12 +1,12 @@
 'use client'
 
-import PokemonImage from '../image/PokemonImage'
 import { Pokemon } from '@/src/types/pokemon'
-import PokemonVersion from '../version/PokemonVersion'
 import { usePokemon } from '@/src/context/PokemonContext'
 import { useEffect } from 'react'
-import PokemonType from '../types/PokemonType'
-import PokemonAbility from '../ability/PokemonAbility'
+import PokemonImage from '@/src/components/pokemon//image/PokemonImage'
+import PokemonType from '@/src/components/pokemon/types/PokemonType'
+import PokemonAbility from '@/src/components/pokemon/ability/PokemonAbility'
+import PokemonStats from '@/src/components/pokemon//stats/PokemonStats'
 interface PokemonDetailsProps {
   pokemon: Pokemon
 }
@@ -31,7 +31,7 @@ export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
 
       <PokemonType />
       <PokemonAbility />
-      {/* <PokemonVersion selectedPokemon={pokemon} /> */}
+      <PokemonStats />
     </section>
   )
 }

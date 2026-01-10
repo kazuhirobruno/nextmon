@@ -3,6 +3,7 @@ import { usePokemon } from "@/src/context/PokemonContext";
 
 export default function PokemonType() {
   const { state } = usePokemon()
+  
   return (
     <>
       {state.selectedPokemon && (

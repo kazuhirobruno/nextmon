@@ -22,6 +22,9 @@ export interface Pokemon {
   ],
   abilities: [
    Ability
+  ],
+  stats: [
+    Stats
   ]
 }
 
@@ -32,4 +35,15 @@ export interface Ability {
     url: string,
   }
 }
+
+export interface Stats {
+  base_stat: number,
+  stat: {
+    name: "hp" | "attack" | "defense" | "special-attack" | "special-defense" | "speed"
+  }
+}
   
+export interface StatColor {
+  color: string;
+  text: string;
+}
