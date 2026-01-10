@@ -8,7 +8,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
-      <body className="bg-white text-black dark:bg-gray-900 dark:text-white p-6 rounded-lg">
+      <body className="bg-white text-black dark:bg-gray-900 dark:text-white rounded-lg p-0">
         <PokemonProvider>
           <ResponsivePokemonLayout pokemons={pokemons}>
             {children}

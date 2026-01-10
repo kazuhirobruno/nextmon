@@ -29,8 +29,8 @@ export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
         alt={pokemon.name}
       />
 
-      <PokemonType selectedPokemon={pokemon} />
-      <PokemonAbility selectedPokemon={pokemon} />
+      <PokemonType />
+      <PokemonAbility />
       {/* <PokemonVersion selectedPokemon={pokemon} /> */}
     </section>
   )

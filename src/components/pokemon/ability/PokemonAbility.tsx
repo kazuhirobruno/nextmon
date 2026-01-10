@@ -1,14 +1,13 @@
-import { Ability, Pokemon } from "@/src/types/pokemon";
+import { Ability } from "@/src/types/pokemon";
 import "@/src/styles/PokemonTypeStyle.css"
+import { usePokemon } from "@/src/context/PokemonContext";
 
-interface PokemonAbilityProps {
-  selectedPokemon: Pokemon
-}
+export default function PokemonAbility() {
+  const { state } = usePokemon()
 
-export default function PokemonAbility({ selectedPokemon }: PokemonAbilityProps) {
-  
   const showHiddenAbility = () => {
-    const hiddenAbility: Ability | undefined = selectedPokemon.abilities.find(
+    const { selectedPokemon } = state;
+    const hiddenAbility: Ability | undefined = selectedPokemon?.abilities.find(
       ability => ability.is_hidden
     );
 
@@ -25,7 +24,10 @@ export default function PokemonAbility({ selectedPokemon }: PokemonAbilityProps)
   };
 
   const renderAbility = () => {
-    const noHiddenAbility = selectedPokemon.abilities.filter(abilityList => !abilityList.is_hidden)
+    const { selectedPokemon } = state;
+    const noHiddenAbility = selectedPokemon?.abilities.filter(abilityList => !abilityList.is_hidden)
+    if (!noHiddenAbility) return <></>;
+    
     return (
         noHiddenAbility.map(ability => (
           <span
@@ -40,15 +42,19 @@ export default function PokemonAbility({ selectedPokemon }: PokemonAbilityProps)
   }
 
   return (
-    <div className="grid grid-cols-2 gap-2">
-      {/* Título */}
-      <h4 className="w-full col-span-2 text-center font-bold text-lg mb-1">Habilidades</h4>
-
-      {/* Habilidades normais */}
-      {renderAbility()}
-
-      {/* Habilidade oculta */}
-      {showHiddenAbility()}
-    </div>
+    <>
+      {state.selectedPokemon && (
+        <div className="grid grid-cols-2 gap-2">
+          {/* Título */}
+          <h4 className="w-full col-span-2 text-center font-bold text-lg mb-1">Habilidades</h4>
+    
+          {/* Habilidades normais */}
+          {renderAbility()}
+    
+          {/* Habilidade oculta */}
+          {showHiddenAbility()}
+        </div>
+      )}
+    </>
   );
 }
