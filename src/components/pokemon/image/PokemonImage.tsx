@@ -2,21 +2,24 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { usePokemon } from '@/src/context/PokemonContext'
 
 interface PokemonImageProps {
-  src: string
-  alt: string
   size?: number
 }
 
-export default function PokemonImage({ src, alt, size = 150 }: PokemonImageProps) {
+export default function PokemonImage({ size = 150 }: PokemonImageProps) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-
+  const { state } = usePokemon()
+  const { selectedPokemon } = state
+  const [isShiny, setIsShiny] = useState(false)
+  
+  if (!selectedPokemon) return <></>
+  
   return (
     <div
-      className="relative flex items-center justify-center rounded overflow-hidden"
-      style={{ width: size, height: size }}
+      className="relative flex items-center justify-center rounded overflow-hidden flex-wrap max-w-37.5 gap-2"
     >
       {loading && !error && (
         <div className="absolute inset-0 flex items-center justify-center w[150px] h[150px]">
@@ -32,8 +35,11 @@ export default function PokemonImage({ src, alt, size = 150 }: PokemonImageProps
 
       {!error && (
         <Image
-          src={src}
-          alt={alt}
+          src={isShiny 
+            ? selectedPokemon.sprites.other['official-artwork'].front_shiny
+            : selectedPokemon.sprites.other['official-artwork'].front_default
+          }
+          alt={selectedPokemon.name}
           width={size}
           height={size}
           className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}
@@ -44,6 +50,11 @@ export default function PokemonImage({ src, alt, size = 150 }: PokemonImageProps
           }}
         />
       )}
+
+      <button 
+        className="text-gray-900 dark:text-white font-bold" 
+        onClick={() => setIsShiny(prev => !prev)}
+      > {!isShiny ? "Versão Shiny" : "Versão Regular"}</button>
     </div>
   )
 }

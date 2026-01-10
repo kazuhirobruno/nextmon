@@ -13,7 +13,7 @@ export default function PokemonAbility() {
 
     return hiddenAbility && (
       <>
-        <h4 className="w-full col-span-2 text-center font-semibold mt-2 text-gray-500">
+        <h4 className="ww-full col-span-2 text-center font-bold text-lg mb-1">
           Habilidade Oculta
         </h4>
         <span className="capitalize col-span-2 py-1 px-3 bg-gray-300 rounded text-center block text-gray-900">
@@ -45,13 +45,10 @@ export default function PokemonAbility() {
     <>
       {state.selectedPokemon && (
         <div className="grid grid-cols-2 gap-2">
-          {/* Título */}
           <h4 className="w-full col-span-2 text-center font-bold text-lg mb-1">Habilidades</h4>
     
-          {/* Habilidades normais */}
           {renderAbility()}
     
-          {/* Habilidade oculta */}
           {showHiddenAbility()}
         </div>
       )}

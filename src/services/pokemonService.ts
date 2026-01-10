@@ -1,4 +1,4 @@
-import { PokemonListItem, Pokemon } from '../types/pokemon'
+import { PokemonListItem, PokemonSpecies } from '../types/pokemon'
 
 const API_URL = 'https://pokeapi.co/api/v2'
 
@@ -9,13 +9,13 @@ export async function getAllPokemons(): Promise<PokemonListItem[]> {
 }
 
 export async function getPokemonById(id: number) {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${id}`
-  )
-
-  if (!response.ok) {
-    return null
-  }
-
+  const response = await fetch(`${API_URL}/pokemon/${id}`)
+  if (!response.ok) return null
   return response.json()
+}
+
+export async function getVariants(id: number): Promise<PokemonSpecies[]> {
+  const response = await fetch(`${API_URL}/pokemon-species/${id}`)
+  const data = await response.json()
+  return data.results
 }

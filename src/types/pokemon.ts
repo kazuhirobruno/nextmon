@@ -9,7 +9,8 @@ export interface Pokemon {
   sprites: {
     other: {
       'official-artwork': {
-        front_default: string
+        front_default: string,
+        front_shiny: string
       }
     }
   },
@@ -47,3 +48,31 @@ export interface StatColor {
   color: string;
   text: string;
 }
+
+export interface PokemonSpecies {
+  evolution_chain: {
+    url: string;
+  };
+}
+export interface EvolutionChainResponse {
+  chain: EvolutionChainLink;
+}
+
+export interface EvolutionChainLink {
+  species: {
+    name: string;
+  };
+  evolves_to: EvolutionChainLink[];
+  evolution_details?: EvolutionDetail[];
+}
+
+export interface EvolutionDetail {
+  min_level: number | null;
+  trigger: {
+    name: string;
+  };
+  item: {
+    name: string;
+  } | null;
+}
+

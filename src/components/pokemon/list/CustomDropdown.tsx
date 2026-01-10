@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { PokemonListItem as Pokemon } from "@/src/types/pokemon"
 import { useRouter } from "next/navigation"
+import { usePokemon } from "@/src/context/PokemonContext"
 
 interface CustomDropdownProps {
   pokemons: Pokemon[]
@@ -14,6 +15,7 @@ export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
   const [selected, setSelected] = useState<Pokemon | null>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [number, setNumber] = useState(0)
+  const { dispatch } = usePokemon()
   // Fecha dropdown ao clicar fora
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -29,6 +31,7 @@ export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
     setSelected(pokemon)
     setIsOpen(false)
     setNumber(index)
+     dispatch({ type: "CLEAR_SELECTION" })
     router.push(`/${index}`)
   }
 
