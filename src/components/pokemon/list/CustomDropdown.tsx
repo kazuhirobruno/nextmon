@@ -40,7 +40,7 @@ export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
         className="
           w-full p-3 bg-gray-900 text-white rounded-md border border-gray-700
           flex justify-between items-center cursor-pointer
-          hover:bg-gray-800 transition-colors
+          hover:bg-gray-800 transition-colors capitalize
         "
       >
         {selected ? `#${number} ${selected.name}` : "Selecione um Pokémon"}
@@ -59,7 +59,7 @@ export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
                 transition-colors capitalize bg-[#ededed] dark:bg-[#0a0a0a]
               "
             >
-              #{index + 1} {p.name}
+              #{index + 1} <span className="capitalize">{p.name}</span>
             </li>
           ))}
         </ul>
