@@ -38,12 +38,12 @@ export default function PokemonImage({ selectedPokemon, size = 150 }: PokemonIma
               ? selectedPokemon.sprites.other['official-artwork'].front_shiny
               : selectedPokemon.sprites.other['official-artwork'].front_default
             }
-            alt={selectedPokemon.name}
+            alt={isShiny ? `${selectedPokemon.name} shiny` : selectedPokemon.name}
             width={size}
             height={size}
             className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setLoading(false)}
-            priority
+            fetchPriority="high" 
             onError={() => {
               setLoading(false)
               setError(true)
