@@ -17,7 +17,7 @@ export async function generateMetadata(
   if (Number.isInteger(id) && id > 0 && pokemon) {
     return { 
       title: `#${id} - ${cssCapitalize(pokemon.name)} | NextMon - Pokédex`, 
-      metadataBase: `Página descritiva sobre o Pokémon ${cssCapitalize(pokemon.name)}`
+      description: `Página descritiva sobre o Pokémon ${cssCapitalize(pokemon.name)}`
     } 
   }
 
