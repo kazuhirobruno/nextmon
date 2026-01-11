@@ -2,21 +2,19 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { usePokemon } from '@/src/context/PokemonContext'
+import { Pokemon } from '@/src/types/pokemon'
+import Link from 'next/link'
+import { getOfficialPokemonLink } from '@/src/utils/OfficialPokemonWebsiteLink'
 
 interface PokemonImageProps {
-  size?: number
+  size?: number,
+  selectedPokemon: Pokemon
 }
 
-export default function PokemonImage({ size = 150 }: PokemonImageProps) {
+export default function PokemonImage({ selectedPokemon, size = 150 }: PokemonImageProps) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-  const { state } = usePokemon()
-  const { selectedPokemon } = state
   const [isShiny, setIsShiny] = useState(false)
-  
-  if (!selectedPokemon) return <></>
-  
   return (
     <div
       className="relative flex items-center justify-center rounded overflow-hidden flex-wrap max-w-37.5 gap-2"
@@ -34,21 +32,24 @@ export default function PokemonImage({ size = 150 }: PokemonImageProps) {
       )}
 
       {!error && (
-        <Image
-          src={isShiny 
-            ? selectedPokemon.sprites.other['official-artwork'].front_shiny
-            : selectedPokemon.sprites.other['official-artwork'].front_default
-          }
-          alt={selectedPokemon.name}
-          width={size}
-          height={size}
-          className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}
-          onLoadingComplete={() => setLoading(false)}
-          onError={() => {
-            setLoading(false)
-            setError(true)
-          }}
-        />
+        <Link href={getOfficialPokemonLink(selectedPokemon.name)} target='blank'>
+          <Image
+            src={isShiny 
+              ? selectedPokemon.sprites.other['official-artwork'].front_shiny
+              : selectedPokemon.sprites.other['official-artwork'].front_default
+            }
+            alt={selectedPokemon.name}
+            width={size}
+            height={size}
+            className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}
+            onLoad={() => setLoading(false)}
+            priority
+            onError={() => {
+              setLoading(false)
+              setError(true)
+            }}
+          />
+        </Link>
       )}
 
       <button 

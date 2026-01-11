@@ -21,12 +21,12 @@ export default function PokemonStatsItem ({ statsName, value }: PokemonStatsItem
       <span className="
         p-2 border-2 border-gray-600 dark:border-white
         text-gray-600 dark:text-white
-        flex items-center justify-center"
+        flex items-center justify-center text-center" 
       >{mapStatsName[statsName]}: </span>
       <span className="
         p-2 border-2 border-gray-600 dark:border-white
         text-gray-600 dark:text-white
-        flex items-center justify-center"
+        flex items-center justify-center text-center"
       >{value}</span>
       <span className={`p-2 border-2 border-gray-600 dark:border-white flex items-center justify-center`}>
         <div 

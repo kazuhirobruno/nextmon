@@ -1,19 +1,16 @@
 import "@/src/styles/PokemonTypeStyle.css"
-import { usePokemon } from "@/src/context/PokemonContext";
+import { Pokemon } from "@/src/types/pokemon"
 
-export default function PokemonType() {
-  const { state } = usePokemon()
-  
+interface PokemonTypeProps {
+  selectedPokemon: Pokemon
+}
+
+export default function PokemonType({ selectedPokemon }: PokemonTypeProps) {
   return (
-    <>
-      {state.selectedPokemon && (
-        <div className="flex flex-row gap-1">
-          {state.selectedPokemon.types.map(type => 
-            <span className={`bg-type-${type.type.name} rounded-lg capitalize flex-1 py-1 px-3`} key={type.type.name}>{type.type.name}</span>
-          )}
-        </div>
-      )}
-    </>
-  )
-  
+    <div className="flex flex-row gap-1">
+      {selectedPokemon.types.map(type => (
+        <span className={`bg-type-${type.type.name} rounded-lg capitalize flex-1 py-1 px-3`} key={type.type.name}>{type.type.name}</span>
+      ))}
+    </div>
+  )  
 }

@@ -1,9 +1,6 @@
-'use client'
-
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { PokemonListItem as Pokemon } from "@/src/types/pokemon"
-import { useRouter } from "next/navigation"
-import { usePokemon } from "@/src/context/PokemonContext"
+import { useRouter, usePathname } from "next/navigation"
 
 interface CustomDropdownProps {
   pokemons: Pokemon[]
@@ -11,28 +8,19 @@ interface CustomDropdownProps {
 
 export default function CustomDropdown({ pokemons }: CustomDropdownProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState<Pokemon | null>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const [number, setNumber] = useState(0)
-  const { dispatch } = usePokemon()
-  // Fecha dropdown ao clicar fora
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
+
+  // Derivar o selected e number diretamente
+  const pathParts = pathname.split("/").filter(Boolean)
+  const id = pathParts.length > 0 ? parseInt(pathParts[pathParts.length - 1], 10) : null
+  const number = id && id > 0 && id <= pokemons.length ? id : null
+  const selected = number ? pokemons[number - 1] : null
 
   const handleSelect = (pokemon: Pokemon, index: number) => {
-    setSelected(pokemon)
-    setIsOpen(false)
-    setNumber(index)
-     dispatch({ type: "CLEAR_SELECTION" })
     router.push(`/${index}`)
+    setIsOpen(false)
   }
 
   return (

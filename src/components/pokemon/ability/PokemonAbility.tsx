@@ -1,21 +1,21 @@
-import { Ability } from "@/src/types/pokemon";
+import { Ability, Pokemon } from "@/src/types/pokemon";
 import "@/src/styles/PokemonTypeStyle.css"
-import { usePokemon } from "@/src/context/PokemonContext";
 
-export default function PokemonAbility() {
-  const { state } = usePokemon()
+interface PokemonAbilityInterface {
+  selectedPokemon: Pokemon
+}
 
+export default function PokemonAbility({ selectedPokemon }: PokemonAbilityInterface) {
   const showHiddenAbility = () => {
-    const { selectedPokemon } = state;
     const hiddenAbility: Ability | undefined = selectedPokemon?.abilities.find(
       ability => ability.is_hidden
     );
 
     return hiddenAbility && (
       <>
-        <h4 className="ww-full col-span-2 text-center font-bold text-lg mb-1">
+        <h2 className="ww-full col-span-2 text-center font-bold text-lg mb-1">
           Habilidade Oculta
-        </h4>
+        </h2>
         <span className="capitalize col-span-2 py-1 px-3 bg-gray-300 rounded text-center block text-gray-900">
           {hiddenAbility.ability.name.replace(/-/g, " ")}
         </span>
@@ -24,7 +24,6 @@ export default function PokemonAbility() {
   };
 
   const renderAbility = () => {
-    const { selectedPokemon } = state;
     const noHiddenAbility = selectedPokemon?.abilities.filter(abilityList => !abilityList.is_hidden)
     if (!noHiddenAbility) return <></>;
     
@@ -42,16 +41,10 @@ export default function PokemonAbility() {
   }
 
   return (
-    <>
-      {state.selectedPokemon && (
-        <div className="grid grid-cols-2 gap-2">
-          <h4 className="w-full col-span-2 text-center font-bold text-lg mb-1">Habilidades</h4>
-    
-          {renderAbility()}
-    
-          {showHiddenAbility()}
-        </div>
-      )}
-    </>
+    <div className="grid grid-cols-2 gap-2">
+      <h2 className="w-full col-span-2 text-center font-bold text-lg mb-1">Habilidades</h2>
+      {renderAbility()}
+      {showHiddenAbility()}
+    </div>
   );
 }

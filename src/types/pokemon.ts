@@ -32,15 +32,15 @@ export interface Pokemon {
 export interface Ability {
   is_hidden: boolean,
   ability: {
-    name: string,
-    url: string,
+    name: string;
+    url: string;
   }
 }
 
 export interface Stats {
   base_stat: number,
   stat: {
-    name: "hp" | "attack" | "defense" | "special-attack" | "special-defense" | "speed"
+    name: "hp" | "attack" | "defense" | "special-attack" | "special-defense" | "speed";
   }
 }
   
@@ -61,6 +61,7 @@ export interface EvolutionChainResponse {
 export interface EvolutionChainLink {
   species: {
     name: string;
+    url: string;
   };
   evolves_to: EvolutionChainLink[];
   evolution_details?: EvolutionDetail[];
@@ -76,3 +77,8 @@ export interface EvolutionDetail {
   } | null;
 }
 
+export interface EvolutionChainLinkParsed {
+  name: string;
+  preEvolution?: string;
+  id: number;
+}
