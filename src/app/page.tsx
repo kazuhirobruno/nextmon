@@ -1,3 +1,8 @@
+export const metadata = {
+  title: 'NextMon - Pokédex',
+  description: 'Listagem de Pokémon',
+};
+
 export default function HomePage() {
   return (
     <div className="flex justify-center items-center h-full text-gray-500">
