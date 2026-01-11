@@ -15,7 +15,10 @@ export async function generateMetadata(
   const pokemon = await getPokemonById(id)
 
   if (Number.isInteger(id) && id > 0 && pokemon) {
-    return { title: `#${id} - ${cssCapitalize(pokemon.name)} | NextMon - Pokédex`, } 
+    return { 
+      title: `#${id} - ${cssCapitalize(pokemon.name)} | NextMon - Pokédex`, 
+      metadataBase: `Página descritiva sobre o Pokémon ${cssCapitalize(pokemon.name)}`
+    } 
   }
 
   return { title: 'Pokémon não Encontrado | NextMon - Pokédex' };
