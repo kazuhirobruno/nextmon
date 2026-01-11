@@ -63,12 +63,12 @@ export default function PokemonEvolutionLayout({ evolutionChain, selectedPokemon
           {first.length ? renderPokemonCard(first) : <></>}
           {second.length ? 
             (<>
-              <h6 className="w-full col-span-2 text-center font-bold mb-1 text-[16px]">Evolui para:</h6>
+              <h3 className="w-full col-span-2 text-center font-bold mb-1 text-[16px]">Evolui para:</h3>
               {renderPokemonCard(second)} 
             </>): <></>}
           {last.length ? 
             (<>
-              <h6 className="w-full col-span-2 text-center font-bold mb-1 text-[16px]">Evolui para:</h6>
+              <h3 className="w-full col-span-2 text-center font-bold mb-1 text-[16px]">Evolui para:</h3>
               {renderPokemonCard(last)} 
             </>): <></>}
         </div>
