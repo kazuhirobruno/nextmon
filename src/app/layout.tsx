@@ -1,6 +1,7 @@
 import '@/src/styles/globals.css'
 import { getAllPokemons } from '@/src/services/pokemonService'
 import ResponsivePokemonLayout from '@/src/components/pokemon/ResponsivePokemonLayout'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const pokemons = await getAllPokemons()
@@ -11,6 +12,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ResponsivePokemonLayout pokemons={pokemons}>
           {children}
         </ResponsivePokemonLayout>
+        <SpeedInsights />
       </body>
     </html>
   )
