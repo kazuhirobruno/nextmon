@@ -15,6 +15,18 @@ export default function PokemonImage({ selectedPokemon, size = 150 }: PokemonIma
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [isShiny, setIsShiny] = useState(false)
+
+  if (!selectedPokemon.sprites.other['official-artwork'].front_default) {
+    return (
+      <span 
+        className="flex text-gray-800 dark:text-white justify-center items-center text-3xl text-center"
+        style={{ width: size, height: size }}
+      >
+        Imagem não encontrada
+      </span>
+    )
+  }
+
   return (
     <div
       className="relative flex items-center justify-center rounded overflow-hidden flex-wrap max-w-37.5 gap-2"

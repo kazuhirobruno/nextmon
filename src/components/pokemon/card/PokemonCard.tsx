@@ -21,13 +21,23 @@ export default function PokemonCard({ pokemon, selectedPokemon, variationSection
       `}
       
     >
-      <Image 
-        height={56}
-        width={56}
-        src={pokemon.sprites.other['official-artwork'].front_default}
-        alt={pokemon.name}
-        fetchPriority="high" 
-      />
+      <>
+        {
+          pokemon.sprites.other['official-artwork'].front_default ? (
+            <Image 
+              height={56}
+              width={56}
+              src={pokemon.sprites.other['official-artwork'].front_default}
+              alt={pokemon.name}
+              fetchPriority="high" 
+            />
+          ) : (
+            <span className="w-14 h-14 block text-gray-800 dark:text-white text-[12px] text-center ">
+              Imagem não encontrada
+            </span>
+          )
+        }
+      </>
       {variationSection ? normalizeName(pokemon.name) : pokemon.species.name}
     </Link>
   )
