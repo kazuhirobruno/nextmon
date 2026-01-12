@@ -10,7 +10,6 @@ export async function parseEvolutionChain (selectedPokemon: Pokemon): Promise<Ev
   const speciesDictionary = getEvolutionLine(selectedPokemon.name)
 
   if (speciesDictionary) {
-    speciesDictionary.isVariant = true
     return speciesDictionary
   }
 
