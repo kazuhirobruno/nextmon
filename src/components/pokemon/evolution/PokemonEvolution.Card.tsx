@@ -9,11 +9,11 @@ interface PokemonEvolutionCardProps {
 export default function PokemonEvolutionCard ({ evolution, selectedPokemon }: PokemonEvolutionCardProps) {
   return (
     <div className="flex flex-row items-center justify-center gap-4 w-full flex-wrap mb-4">
-      {evolution.map(item => 
+      {evolution.map(pokemon => 
         <PokemonEvolutionLink 
-          item={item} 
+          pokemon={pokemon} 
           selectedPokemon={selectedPokemon} 
-          key={`evolution-card-${item.name}-${item.id}`} 
+          key={`evolution-card-${pokemon.name}-${pokemon.id}`} 
         />)
       }
     </div>

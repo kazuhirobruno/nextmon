@@ -32,7 +32,7 @@ export default function PokemonImage({ selectedPokemon, size = 150 }: PokemonIma
       )}
 
       {!error && (
-        <Link href={getOfficialPokemonLink(selectedPokemon.name)} target='blank'>
+        <Link href={getOfficialPokemonLink(selectedPokemon.species.name)} target='blank'>
           <Image
             src={isShiny 
               ? selectedPokemon.sprites.other['official-artwork'].front_shiny

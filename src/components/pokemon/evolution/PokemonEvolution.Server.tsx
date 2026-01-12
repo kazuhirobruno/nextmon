@@ -8,7 +8,6 @@ interface PokemonEvolutionProps {
 }
 
 export default async function PokemonEvolution({ selectedPokemon }: PokemonEvolutionProps) {
-  const evolutionData: EvolutionChainResponse = await getEvolutionChain(selectedPokemon.species.url)
-  const evolutionChain = parseEvolutionChain(evolutionData.chain)
+  const evolutionChain = await parseEvolutionChain(selectedPokemon)
   return <PokemonEvolutionLayout evolutionChain={evolutionChain} selectedPokemon={selectedPokemon} />
 }

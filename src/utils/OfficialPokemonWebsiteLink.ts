@@ -18,6 +18,8 @@ const nameMap: Record<string, string> = {
   "ho-oh": "ho-oh"
 };
 
+const Regions = ['hisui', 'alola', 'galar', 'paldea'];
+
 /**
  * Gera a URL oficial do Pokémon no site Pokémon.com
  * @param name Nome do Pokémon vindo da PokéAPI
@@ -35,5 +37,9 @@ export function getOfficialPokemonLink(name: string): string {
     .replace(/[.'’]/g, "") // remove apóstrofos
     .replace(/\s+/g, "-"); // substitui espaços por hífens
 
-  return `https://www.pokemon.com/br/pokedex/${normalized}`;
+  // Remove sufixo de forma regional
+  const regionPattern = new RegExp(`-(${Regions.join("|")})$`);
+  const officialUrl = normalized.replace(regionPattern, "");
+
+  return `https://www.pokemon.com/br/pokedex/${officialUrl}`;
 }

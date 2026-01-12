@@ -94,4 +94,3 @@ export interface EvolutionChainLinkParsedItem {
   name: string;
   id: number;
 }
-

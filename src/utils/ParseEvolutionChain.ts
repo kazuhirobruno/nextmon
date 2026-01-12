@@ -1,11 +1,12 @@
-import { EvolutionChainLink, EvolutionChainLinkParsed, EvolutionChainLinkParsedItem } from "../interfaces/pokemon";
+import { EvolutionChainLink, EvolutionChainLinkParsed, EvolutionChainLinkParsedItem, EvolutionChainResponse, Pokemon } from "../interfaces/pokemon";
+import { getEvolutionChain } from "../services/pokemonService";
 
-
-
-export function parseEvolutionChain (chain: EvolutionChainLink): EvolutionChainLinkParsed {
+export async function parseEvolutionChain (selectedPokemon: Pokemon): Promise<EvolutionChainLinkParsed> {
   const first: EvolutionChainLinkParsedItem[]|[] = [], 
     second:  EvolutionChainLinkParsedItem[]|[] = [], 
     third: EvolutionChainLinkParsedItem[]|[] = []
+
+  const evolutionData: EvolutionChainResponse = await getEvolutionChain(selectedPokemon.species.url)
 
   const findTreeLevel = (index: number) => {
     return index === 1 
@@ -25,6 +26,6 @@ export function parseEvolutionChain (chain: EvolutionChainLink): EvolutionChainL
     pokemon.evolves_to.forEach(evo => traverse(evo, index + 1))
   }
 
-  traverse(chain, 1)
+  traverse(evolutionData.chain, 1)
   return { first, second, third }
 }

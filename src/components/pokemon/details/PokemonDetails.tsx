@@ -9,11 +9,10 @@ interface PokemonDetailsProps {
 }
 
 export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
-  console.log(pokemon)
   return (
     <section className="flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold capitalize">
-        #{pokemon.id} {pokemon.name}
+        #{pokemon.id} {pokemon.species.name}
       </h1>
 
       <PokemonImage selectedPokemon={pokemon} />

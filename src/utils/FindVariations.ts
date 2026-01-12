@@ -4,7 +4,7 @@ import { Pokemon } from "../interfaces/pokemon";
 const Regions = ['hisui', 'alola', 'galar', 'paldea']
 const Excludes = '-cap'
 
-export async function findVariations(pokemon: Pokemon) {
+export async function findVariations(pokemon: Pokemon): Promise<Pokemon[]> {
   const pokemonSpeciesData = await getPokemonSpeciesUsingAbsoluteUrl(pokemon.species.url);
   const { varieties } = pokemonSpeciesData;
   const responsePokemonSpeciesData: Pokemon[] = [pokemon];

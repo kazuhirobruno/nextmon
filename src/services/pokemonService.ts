@@ -13,6 +13,12 @@ export async function getPokemonById(id: number): Promise<Pokemon> {
   return response.json()
 }
 
+export async function getPokemonByName(name: string): Promise<Pokemon> {
+  const response = await fetch(`${API_URL}/pokemon/${name}`)
+  return response.json()
+}
+
+
 export async function getEvolutionChain(url: string): Promise<EvolutionChainResponse> {
   const response = await fetch(url)
   const data = await response.json()
