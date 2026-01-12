@@ -55,6 +55,7 @@ export default function PokemonImage({ selectedPokemon, size = 150 }: PokemonIma
             height={size}
             className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setLoading(false)}
+            loading='lazy'
             fetchPriority="high" 
             onError={() => {
               setLoading(false)
