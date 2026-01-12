@@ -52,10 +52,16 @@ export default function PokemonImage({ selectedPokemon, size = 150 }: PokemonIma
         </Link>
       )}
 
-      <button 
-        className="text-gray-900 dark:text-white font-bold" 
-        onClick={() => setIsShiny(prev => !prev)}
-      > {!isShiny ? "Versão Shiny" : "Versão Regular"}</button>
+      {selectedPokemon.sprites.other['official-artwork'].front_shiny 
+        ? (
+          <button 
+            className="text-gray-900 dark:text-white font-bold" 
+            onClick={() => setIsShiny(prev => !prev)}
+          > {!isShiny ? "Versão Shiny" : "Versão Regular"}</button>
+        ) : (
+          <></>
+        )
+      }
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import { Pokemon } from '@/src/interfaces/pokemon'
-import PokemonImage from '@/src/components/pokemon//image/PokemonImage'
+import PokemonImage from '@/src/components/pokemon/image/PokemonImage'
 import PokemonType from '@/src/components/pokemon/types/PokemonType'
 import PokemonAbility from '@/src/components/pokemon/ability/PokemonAbility'
-import PokemonStats from '@/src/components/pokemon//stats/PokemonStats'
-import PokemonEvolution from '../evolution/PokemonEvolution.Server'
+import PokemonStats from '@/src/components/pokemon/stats/PokemonStats'
+import PokemonEvolution from '@/src/components/pokemon/evolution/PokemonEvolution.Server'
 import { extractIdFromUrl } from '@/src/utils/ExtractIdFromUrl'
+import PokemonVariantsServer from '@/src/components/pokemon/variants/PokemonVariants.Server'
+
 interface PokemonDetailsProps {
   pokemon: Pokemon
 }
@@ -22,6 +24,7 @@ export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
       <PokemonAbility selectedPokemon={pokemon} />
       <PokemonStats selectedPokemon={pokemon} />
       <PokemonEvolution selectedPokemon={pokemon} />
+      <PokemonVariantsServer selectedPokemon={pokemon} />
     </section>
   )
 }

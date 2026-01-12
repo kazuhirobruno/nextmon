@@ -14,7 +14,7 @@ export default function PokemonEvolutionLayout({ evolutionChain, selectedPokemon
       {second.length > 0 ? (
         <div className="flex flex-col">
           <h2 className="ww-full text-center font-bold text-lg mb-1">Linha evolutiva:</h2>
-          {first.length ? <PokemonEvolutionCard selectedPokemon={selectedPokemon} evolution={first} isVariant={isVariant} />: <></>}
+          <PokemonEvolutionCard selectedPokemon={selectedPokemon} evolution={first} isVariant={isVariant} />
           {second.length ? 
             (<>
               <h3 className="w-full col-span-2 text-center font-bold mb-1 text-[16px]">Evolui para:</h3>

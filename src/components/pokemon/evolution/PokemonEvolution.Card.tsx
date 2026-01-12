@@ -9,7 +9,7 @@ interface PokemonEvolutionCardProps {
 
 export default async function PokemonEvolutionCard ({ evolution, selectedPokemon, isVariant }: PokemonEvolutionCardProps) {
   return (
-    <div className="flex flex-row items-center justify-center gap-4 w-full flex-wrap mb-4">
+    <div className="flex items-center justify-center gap-4 w-full flex-wrap mb-4">
       {evolution.map(pokemon => 
         <PokemonEvolutionLink 
           pokemon={pokemon} 

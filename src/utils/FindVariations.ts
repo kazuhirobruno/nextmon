@@ -4,7 +4,7 @@ import { Pokemon } from "../interfaces/pokemon";
 const Regions = ['hisui', 'alola', 'galar', 'paldea']
 const Excludes = '-cap'
 
-export async function findVariations(pokemon: Pokemon, pokemonName: string, isVariant: boolean): Promise<Pokemon[]> {
+export async function findRegionalVariations(pokemon: Pokemon, pokemonName: string, isVariant: boolean): Promise<Pokemon[]> {
   const pokemonSpeciesData = await getPokemonSpeciesUsingAbsoluteUrl(pokemon.species.url);
   const { varieties } = pokemonSpeciesData;
   const responsePokemonSpeciesData: Pokemon[] = [pokemon];
@@ -26,3 +26,18 @@ export async function findVariations(pokemon: Pokemon, pokemonName: string, isVa
 
   return responsePokemonSpeciesData
 }
+
+export async function findAllVariations(pokemon: Pokemon): Promise<Pokemon[]> {
+  const pokemonSpeciesData = await getPokemonSpeciesUsingAbsoluteUrl(pokemon.species.url);
+  const { varieties } = pokemonSpeciesData;
+  const responsePokemonSpeciesData: Pokemon[] = []
+  
+  const promises = varieties.map(item => getPokemonDataUsingAbsoluteUrl(item.pokemon.url));
+
+  const pokemonDataArray = await Promise.all(promises);
+
+  responsePokemonSpeciesData.push(...pokemonDataArray)
+
+  return responsePokemonSpeciesData
+}
+
