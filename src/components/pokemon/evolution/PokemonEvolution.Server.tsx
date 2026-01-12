@@ -1,5 +1,4 @@
-import { getEvolutionChain } from "@/src/services/pokemonService";
-import { EvolutionChainResponse, Pokemon } from "@/src/interfaces/pokemon";
+import { Pokemon } from "@/src/interfaces/pokemon";
 import { parseEvolutionChain } from "@/src/utils/ParseEvolutionChain";
 import PokemonEvolutionLayout from "./PokemonEvolution.Layout";
 

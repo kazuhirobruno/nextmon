@@ -88,6 +88,7 @@ export interface EvolutionChainLinkParsed {
   first: EvolutionChainLinkParsedItem[]
   second: EvolutionChainLinkParsedItem[]
   third: EvolutionChainLinkParsedItem[]
+  isVariant: boolean
 }
 
 export interface EvolutionChainLinkParsedItem {

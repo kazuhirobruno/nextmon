@@ -3,16 +3,18 @@ import PokemonEvolutionLink from "@/src/components/pokemon/evolution/PokemonEvol
 
 interface PokemonEvolutionCardProps {
   evolution:EvolutionChainLinkParsedItem[],
-  selectedPokemon: Pokemon
+  selectedPokemon: Pokemon,
+  isVariant: boolean
 }
 
-export default function PokemonEvolutionCard ({ evolution, selectedPokemon }: PokemonEvolutionCardProps) {
+export default async function PokemonEvolutionCard ({ evolution, selectedPokemon, isVariant }: PokemonEvolutionCardProps) {
   return (
     <div className="flex flex-row items-center justify-center gap-4 w-full flex-wrap mb-4">
       {evolution.map(pokemon => 
         <PokemonEvolutionLink 
           pokemon={pokemon} 
-          selectedPokemon={selectedPokemon} 
+          selectedPokemon={selectedPokemon}
+          isVariant={isVariant}
           key={`evolution-card-${pokemon.name}-${pokemon.id}`} 
         />)
       }

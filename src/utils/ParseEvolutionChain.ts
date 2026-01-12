@@ -1,10 +1,18 @@
 import { EvolutionChainLink, EvolutionChainLinkParsed, EvolutionChainLinkParsedItem, EvolutionChainResponse, Pokemon } from "../interfaces/pokemon";
 import { getEvolutionChain } from "../services/pokemonService";
+import { getEvolutionLine } from "./RegionalEvolutionDictionary";
 
 export async function parseEvolutionChain (selectedPokemon: Pokemon): Promise<EvolutionChainLinkParsed> {
   const first: EvolutionChainLinkParsedItem[]|[] = [], 
     second:  EvolutionChainLinkParsedItem[]|[] = [], 
     third: EvolutionChainLinkParsedItem[]|[] = []
+
+  const speciesDictionary = getEvolutionLine(selectedPokemon.name)
+
+  if (speciesDictionary) {
+    speciesDictionary.isVariant = true
+    return speciesDictionary
+  }
 
   const evolutionData: EvolutionChainResponse = await getEvolutionChain(selectedPokemon.species.url)
 
@@ -26,6 +34,7 @@ export async function parseEvolutionChain (selectedPokemon: Pokemon): Promise<Ev
     pokemon.evolves_to.forEach(evo => traverse(evo, index + 1))
   }
 
+
   traverse(evolutionData.chain, 1)
-  return { first, second, third }
+  return { first, second, third, isVariant: false }
 }
