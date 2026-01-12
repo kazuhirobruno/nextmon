@@ -1,4 +1,4 @@
-import { StatColor } from "../types/pokemon";
+import { StatColor } from "../interfaces/pokemon";
 
 export function getColorByValue(value: number): StatColor {
   if (value < 30) return { color: "#E53935", text: "Baixo" };

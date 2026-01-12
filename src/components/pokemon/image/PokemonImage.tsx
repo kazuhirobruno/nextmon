@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Pokemon } from '@/src/types/pokemon'
+import { Pokemon } from '@/src/interfaces/pokemon'
 import Link from 'next/link'
 import { getOfficialPokemonLink } from '@/src/utils/OfficialPokemonWebsiteLink'
 

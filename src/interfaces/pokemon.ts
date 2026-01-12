@@ -9,7 +9,7 @@ export interface Pokemon {
   sprites: {
     other: {
       'official-artwork': {
-        front_default: string,
+        front_default: string
         front_shiny: string
       }
     }
@@ -26,14 +26,15 @@ export interface Pokemon {
   ],
   stats: [
     Stats
-  ]
+  ],
+  species: PokemonListItem
 }
 
 export interface Ability {
-  is_hidden: boolean,
+  is_hidden: boolean
   ability: {
-    name: string;
-    url: string;
+    name: string
+    url: string
   }
 }
 
@@ -45,14 +46,20 @@ export interface Stats {
 }
   
 export interface StatColor {
-  color: string;
-  text: string;
+  color: string
+  text: string
 }
 
 export interface PokemonSpecies {
   evolution_chain: {
     url: string;
   };
+  varieties: VaritiesItem[]
+}
+
+export interface VaritiesItem {
+  is_default: boolean
+  pokemon: PokemonListItem
 }
 export interface EvolutionChainResponse {
   chain: EvolutionChainLink;
@@ -60,25 +67,31 @@ export interface EvolutionChainResponse {
 
 export interface EvolutionChainLink {
   species: {
-    name: string;
-    url: string;
+    name: string
+    url: string
   };
-  evolves_to: EvolutionChainLink[];
-  evolution_details?: EvolutionDetail[];
+  evolves_to: EvolutionChainLink[]
+  evolution_details?: EvolutionDetail[]
 }
 
 export interface EvolutionDetail {
   min_level: number | null;
   trigger: {
-    name: string;
+    name: string
   };
   item: {
-    name: string;
+    name: string
   } | null;
 }
 
 export interface EvolutionChainLinkParsed {
+  first: EvolutionChainLinkParsedItem[]
+  second: EvolutionChainLinkParsedItem[]
+  third: EvolutionChainLinkParsedItem[]
+}
+
+export interface EvolutionChainLinkParsedItem {
   name: string;
-  preEvolution?: string;
   id: number;
 }
+

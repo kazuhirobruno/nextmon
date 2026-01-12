@@ -1,4 +1,4 @@
-import { Pokemon } from '@/src/types/pokemon'
+import { Pokemon } from '@/src/interfaces/pokemon'
 import PokemonImage from '@/src/components/pokemon//image/PokemonImage'
 import PokemonType from '@/src/components/pokemon/types/PokemonType'
 import PokemonAbility from '@/src/components/pokemon/ability/PokemonAbility'
@@ -9,6 +9,7 @@ interface PokemonDetailsProps {
 }
 
 export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
+  console.log(pokemon)
   return (
     <section className="flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold capitalize">

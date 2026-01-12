@@ -1,4 +1,4 @@
-import { Ability, Pokemon } from "@/src/types/pokemon";
+import { Ability, Pokemon } from "@/src/interfaces/pokemon";
 import "@/src/styles/PokemonTypeStyle.css"
 
 interface PokemonAbilityInterface {

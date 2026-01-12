@@ -1,5 +1,5 @@
 import "@/src/styles/PokemonTypeStyle.css"
-import { Pokemon } from "@/src/types/pokemon"
+import { Pokemon } from "@/src/interfaces/pokemon"
 
 interface PokemonTypeProps {
   selectedPokemon: Pokemon

@@ -1,4 +1,4 @@
-import { Pokemon } from "@/src/types/pokemon";
+import { Pokemon } from "@/src/interfaces/pokemon";
 import PokemonStatsItem from "./PokemonStatItem";
 
 interface PokemonStatsProps {

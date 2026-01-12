@@ -1,5 +1,5 @@
 import { useState, useRef } from "react"
-import { PokemonListItem as Pokemon } from "@/src/types/pokemon"
+import { PokemonListItem as Pokemon } from "@/src/interfaces/pokemon"
 import { useRouter, usePathname } from "next/navigation"
 
 interface CustomDropdownProps {

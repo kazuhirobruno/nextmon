@@ -1,7 +1,7 @@
 'use client'
 
 import PokemonListItem from './PokemonListItem'
-import { PokemonListItem as Pokemon } from '@/src/types/pokemon'
+import { PokemonListItem as Pokemon } from '@/src/interfaces/pokemon'
 
 interface Props {
   pokemons: Pokemon[]

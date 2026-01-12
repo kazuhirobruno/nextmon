@@ -1,6 +1,6 @@
 'use client'
 
-import { PokemonListItem as Pokemon } from '@/src/types/pokemon'
+import { PokemonListItem as Pokemon } from '@/src/interfaces/pokemon'
 import PokemonList from './list/PokemonList'
 import CustomDropdown from './list/CustomDropdown'
 

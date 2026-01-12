@@ -1,4 +1,4 @@
-import { EvolutionChainResponse, PokemonListItem, PokemonSpecies } from '../types/pokemon'
+import { EvolutionChainResponse, Pokemon, PokemonListItem, PokemonSpecies } from '../interfaces/pokemon'
 
 const API_URL = 'https://pokeapi.co/api/v2'
 
@@ -8,24 +8,34 @@ export async function getAllPokemons(): Promise<PokemonListItem[]> {
   return data.results
 }
 
-export async function getPokemonById(id: number) {
+export async function getPokemonById(id: number): Promise<Pokemon> {
   const response = await fetch(`${API_URL}/pokemon/${id}`)
-  if (!response.ok) return null
   return response.json()
 }
 
-export async function getVariants(id: number): Promise<PokemonSpecies> {
-  const response = await fetch(`${API_URL}/pokemon-species/${id}`)
-  const data = await response.json()
-  return data
-}
-
-export async function getEvolutionChain(id: number): Promise<EvolutionChainResponse> {
-  const response = await fetch(`${API_URL}/pokemon-species/${id}`)
+export async function getEvolutionChain(url: string): Promise<EvolutionChainResponse> {
+  const response = await fetch(url)
   const data = await response.json()
 
   const evolutionResponse = await fetch(data.evolution_chain.url)
   const evolutionData = await evolutionResponse.json()
 
   return evolutionData
+}
+
+export async function getPokemonSpecies(id: number): Promise<PokemonSpecies> {
+  const response = await fetch(`${API_URL}/pokemon-species/${id}`, {
+    next: { revalidate: 60 * 60 * 24 } // 24h
+  }).then(res => res.json())
+  return response
+}
+
+export async function getPokemonSpeciesUsingAbsoluteUrl(url: string): Promise<PokemonSpecies> {
+  const response = await fetch(url)
+  return response.json()
+}
+
+export async function getPokemonDataUsingAbsoluteUrl(url: string): Promise<Pokemon> {
+  const response = await fetch(url)
+  return response.json()
 }
