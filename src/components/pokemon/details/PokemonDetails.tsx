@@ -4,6 +4,7 @@ import PokemonType from '@/src/components/pokemon/types/PokemonType'
 import PokemonAbility from '@/src/components/pokemon/ability/PokemonAbility'
 import PokemonStats from '@/src/components/pokemon//stats/PokemonStats'
 import PokemonEvolution from '../evolution/PokemonEvolution.Server'
+import { extractIdFromUrl } from '@/src/utils/ExtractIdFromUrl'
 interface PokemonDetailsProps {
   pokemon: Pokemon
 }
@@ -12,7 +13,7 @@ export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
   return (
     <section className="flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold capitalize">
-        #{pokemon.id} {pokemon.species.name}
+        #{extractIdFromUrl(pokemon.species.url)} {pokemon.species.name}
       </h1>
 
       <PokemonImage selectedPokemon={pokemon} />
