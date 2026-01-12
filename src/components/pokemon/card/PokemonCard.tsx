@@ -28,7 +28,7 @@ export default function PokemonCard({ pokemon, selectedPokemon, variationSection
               height={56}
               width={56}
               src={pokemon.sprites.other['official-artwork'].front_default}
-              alt={pokemon.name}
+              alt={`${variationSection ? normalizeName(pokemon.name) : pokemon.species.name} - card`}
               fetchPriority="high" 
             />
           ) : (
